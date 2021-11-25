@@ -1,14 +1,8 @@
-# Project
+# *FaRL* for *Fa*cial *R*epresentation *L*earning
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This repo hosts official implementation of our paper **General Facial Representation Learning in a Visual-Linguistic Manner**.
 
-As the maintainer of this project, please make a few updates:
-
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+Code will be released soon.
 
 ## Contributing
 
