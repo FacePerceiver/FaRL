@@ -1,6 +1,6 @@
 # *FaRL* for *Fa*cial *R*epresentation *L*earning
 
-This repo hosts official implementation of our paper **General Facial Representation Learning in a Visual-Linguistic Manner**.
+This repo hosts official implementation of our paper [**General Facial Representation Learning in a Visual-Linguistic Manner**.](https://arxiv.org/abs/2112.03109)
 
 Code will be released soon.
 
