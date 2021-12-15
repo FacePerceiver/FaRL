@@ -16,7 +16,7 @@ train_dataprocessor:
   class: blueprint.ml.DataProcessor 
   data_src:
     class: blueprint.ml.DataSource
-    data_path: $BLOB('data/IBUG300W_YY.train.512.v1.zip')
+    data_path: $BLOB('data/IBUG300W.train.zip')
     random_ratio: $ARGS.get('train_data_ratio', None)
     subset_ids: $ARGS.get('train_subset_ids', None)
     augmentations: 
@@ -40,8 +40,8 @@ eval_dataprocessors:
     data_src:
       class: blueprint.ml.DataSource
       data_path: 
-      - $BLOB('data/IBUG300W_YY.test_common.512.v1.zip') # image, crop_matrix, landmarks
-      - $BLOB('data/IBUG300W_YY.test_challenging.512.v1.zip') # image, crop_matrix, landmarks
+      - $BLOB('data/IBUG300W.test_common.zip') # image, crop_matrix, landmarks
+      - $BLOB('data/IBUG300W.test_challenging.zip') # image, crop_matrix, landmarks
       subset_ids: $ARGS.get('test_subset_ids', None)
       augmentations: 
         $PARSE('../augmenters/test.yaml', scale_mu=0.8, warp_factor=0.0)

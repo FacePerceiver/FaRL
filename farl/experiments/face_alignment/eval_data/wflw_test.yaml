@@ -1,7 +1,7 @@
 class: blueprint.ml.DataProcessor 
 data_src:
   class: blueprint.ml.DataSource
-  data_path: $BLOB('data/WFLW.test_{subset}.512.v1.zip'.format(subset=ARGS['subset'])) # image, crop_matrix, landmarks
+  data_path: $BLOB('data/WFLW.test_{subset}.zip'.format(subset=ARGS['subset'])) # image, crop_matrix, landmarks
   subset_ids: $ARGS.get('subset_ids', None)
   augmentations: $PARSE('../augmenters/test.yaml', scale_mu=ARGS['scale_mu'], warp_factor=ARGS['warp_factor'])
   post_augmentations: $PARSE('../augmenters/test_post.yaml', warp_factor=ARGS['warp_factor'])

@@ -17,7 +17,7 @@ train_dataprocessor:
   class: blueprint.ml.DataProcessor 
   data_src:
     class: blueprint.ml.DataSource
-    data_path: $BLOB('data/AFLW-19.train.512.face_box.v1.zip')
+    data_path: $BLOB('data/AFLW-19.train.zip')
     random_ratio: $ARGS.get('train_data_ratio', None)
     subset_ids: $ARGS.get('train_subset_ids', None)
     augmentations: 

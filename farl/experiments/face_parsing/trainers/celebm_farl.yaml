@@ -13,7 +13,7 @@ train_dataprocessor:
   class: blueprint.ml.DataProcessor 
   data_src:
     class: blueprint.ml.DataSource
-    data_path: $BLOB('data/CelebAMaskHQ.train.512.v1.zip')
+    data_path: $BLOB('data/CelebAMaskHQ.train.zip')
     random_ratio: $ARGS.get('train_data_ratio', None)
     subset_ids: $ARGS.get('train_subset_ids', None)
     augmentations: $PARSE('../augmenters/celebm/train.yaml')
@@ -25,7 +25,7 @@ eval_dataprocessors:
     class: blueprint.ml.DataProcessor
     data_src:
       class: blueprint.ml.DataSource
-      data_path: $BLOB('data/CelebAMaskHQ.test.512.v1.zip')
+      data_path: $BLOB('data/CelebAMaskHQ.test.zip')
       augmentations: $PARSE('../augmenters/celebm/test.yaml')
       post_augmentations: $PARSE('../augmenters/celebm/test_post.yaml')
     batch_size: $$batch_size
