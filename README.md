@@ -49,7 +49,6 @@ The repo has included some config files under `./farl/experiments/train_*` that 
 | face_alignment/train_ibug300w_farl-b-ep16_448_refinebb.yaml | Face Alignment | 300W | NME_inter-ocular (Full) | 2.93 | [Path](./logs/face_alignment.train_ibug300w_farl-b-ep16_448_refinebb) |
 | face_alignment/train_wflw_farl-b-ep16_448_refinebb.yaml | Face Alignment | WFLW | NME_inter-ocular (Full) | 3.96 | [Path](./logs/face_alignment.train_wflw_farl-b-ep16_448_refinebb) |
 
-Note that due to code refactorization, the evaluation scores might not be exactly the same with those reported in our paper, but should be at least comparable.
 
 ## Citation
 
