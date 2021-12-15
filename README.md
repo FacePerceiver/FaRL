@@ -55,7 +55,7 @@ Note that due to code refactorization, the evaluation scores might not be exactl
 
 If you find our work helpful, please consider citing 
 ```
-@article{zheng2021general,
+@article{zheng2021farl,
   title={General Facial Representation Learning in a Visual-Linguistic Manner},
   author={Zheng, Yinglin and Yang, Hao and Zhang, Ting and Bao, Jianmin and Chen, Dongdong and Huang, Yangyu and Yuan, Lu and Chen, Dong and Zeng, Ming and Wen, Fang},
   journal={arXiv preprint arXiv:2112.03109},
