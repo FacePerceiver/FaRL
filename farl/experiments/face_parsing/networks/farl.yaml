@@ -1,0 +1,15 @@
+# args: model_type, model_path, input_resolution, head_channel, num_labels
+
+class: FaceParsingTransformer
+backbone:
+  class: farl.network.FaRLVisualFeatures
+  model_type: $$model_type
+  model_path: $$model_path
+  output_indices: $ARGS.get('output_indices', None)
+  forced_input_resolution: $$input_resolution
+head:
+  class: farl.network.MMSEG_UPerHead
+  in_channels: $[FaRLVisualFeatures.get_output_channel(ARGS['model_type'])]*4
+  channels: $$head_channel
+  num_classes: $$num_labels
+out_size: [512, 512]

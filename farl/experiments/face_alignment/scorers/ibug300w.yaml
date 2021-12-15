@@ -1,0 +1,14 @@
+class: NME
+landmark_tag: landmarks
+pred_landmark_tag: pred_landmarks
+normalize_infos:
+  inter_ocular: 
+    class: NormalizeByLandmarks
+    landmark_tag: landmarks
+    left_id: 36
+    right_id: 45
+  inter_pupil:
+    class: NormalizeByLandmarks
+    landmark_tag: landmarks
+    left_id: [36, 37, 38, 39, 40, 41]
+    right_id: [42, 43, 44, 45, 46, 47]

@@ -1,8 +1,73 @@
 # *FaRL* for *Fa*cial *R*epresentation *L*earning
 
-This repo hosts official implementation of our paper [**General Facial Representation Learning in a Visual-Linguistic Manner**.](https://arxiv.org/abs/2112.03109)
+This repo hosts official implementation of our paper [**General Facial Representation Learning in a Visual-Linguistic Manner**](https://arxiv.org/abs/2112.03109).
 
-Code will be released soon.
+
+## Introduction
+
+**FaRL** offers powerful pre-training backbones for face analysis tasks. Its pre-training combines both the image-text contrastive learning and the masked image modeling.
+
+<img src="./figures/framework.jpg" alt="framework" width="400"/>
+
+After the pre-training, the image encoder can be utilized for various downstream face tasks. 
+
+
+## Setup Downstream Training
+
+Different pre-trained models can be downloaded as below.
+
+| Model Name  |  Pre-training Data | Epoch | Link |
+| ----------- | -------------- | ----- | --- |
+| FaRL-Base-Patch16-20M-LAIONFace20M-ep16 | LAION Face 20M | 16  | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyPsG2M4uPXay7Au?e=Ocvk1T) |
+| FaRL-Base-Patch16-50M-LAIONFace50M-ep19 | LAION Face 50M | 19  | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyQYN5eZN0WzlVNb?e=KzlLWG) |
+
+Download these models to `./blob/checkpoint/`.
+
+All downstream trainings require 8 NVIDIA V100 GPUs (32G).
+Before setting up, install these packages:
+
+* [PyTorch](https://pytorch.org/get-started/previous-versions/) 1.7.0
+* [MMCV-Full](https://github.com/open-mmlab/mmcv) 1.3.14
+
+Then, install the rest dependencies with `pip install -r ./requirement.txt`.
+
+Please refer to [./DS_DATA.md](./DS_DATA.md) to prepare the training and testing data for downstream tasks.
+
+Now you can launch the trainings with following command template.
+
+```
+python -m blueprint.run farl/experiments/{task}/{train_config_file}.yaml --exp_name farl --blob_root ./blob
+```
+
+The repo has included some config files under `./farl/experiments/train_*` that perform finetuning for face parsing and face alignment:
+
+| File Name | Task | Benchmark | 
+| ---- | ---- | ---- |
+| face_parsing/train_celebm_farl-b-ep16-448_refinebb.yaml | Face Parsing  | CelebAMask-HQ |
+| face_parsing/train_lapa_farl-b-ep16_448_refinebb.yaml | Face Parsing | LaPa |
+| face_alignment/train_aflw19_farl-b-ep16_448_refinebb.yaml | Face Alignment | AFLW-19 |
+| face_alignment/train_ibug300w_farl-b-ep16_448_refinebb.yaml | Face Alignment | 300W |
+| face_alignment/train_wflw_farl-b-ep16_448_refinebb.yaml | Face Alignment | WFLW |
+
+Note that due to code refactorization, the evaluation scores might not be exactly the same with those reported in our paper, but should be at least comparable.
+
+## Citation
+
+If you find our work helpful, please consider citing 
+```
+@article{zheng2021general,
+  title={General Facial Representation Learning in a Visual-Linguistic Manner},
+  author={Zheng, Yinglin and Yang, Hao and Zhang, Ting and Bao, Jianmin and Chen, Dongdong and Huang, Yangyu and Yuan, Lu and Chen, Dong and Zeng, Ming and Wen, Fang},
+  journal={arXiv preprint arXiv:2112.03109},
+  year={2021}
+}
+```
+
+## Contact
+
+For help or issues concerning the code and the released models, please submit a GitHub issue.
+Otherwise, please contact [Hao Yang](https://haya.pro) (`haya@microsoft.com`).
+
 
 ## Contributing
 

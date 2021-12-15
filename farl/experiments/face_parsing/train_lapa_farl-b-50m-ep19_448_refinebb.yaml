@@ -1,0 +1,15 @@
+package: farl.experiments.face_parsing
+
+class: blueprint.ml.DistributedGPURun
+local_run:
+  $PARSE('./trainers/lapa_farl.yaml', 
+    cfg_file=FILE,
+    train_data_ratio=None,
+    batch_size=5,
+    model_type='base',
+    model_name='VIT_R16_LSF_VB_GT_GRID_ZERO_1024_GC1_G16_1X_FS_FULL_LAION_50M_MIM_ALIGN_W10_L1',
+    epoch=19,
+    input_resolution=448,
+    head_channel=768,
+    optimizer_name='refine_backbone',
+    enable_amp=False)

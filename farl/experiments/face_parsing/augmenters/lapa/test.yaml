@@ -1,0 +1,28 @@
+# args: warp_factor
+
+- class: With
+  tags_str: image -> image
+  aug:
+    class: Normalize255
+
+# warp image & label using the align_matrix
+- class: With
+  tags_str: align_matrix -> transform_map
+  aug:
+    class: GetTransformMap
+    warped_shape: [512, 512]
+    warp_factor: $$warp_factor
+- class: With
+  tags_str: image, transform_map -> warped_image
+  aug:
+    class: TransformByMap
+    interpolation: bilinear
+
+# make some original data non-stackable
+- class: With
+  tags_str: image, label, align_matrix -> original_data
+  aug:
+    class: MakeNonStackable
+
+- class: Filter
+  tags: [warped_image, original_data]

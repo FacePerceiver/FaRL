@@ -1,0 +1,72 @@
+# args: cfg_file, 
+#  [train_data_ratio], warp_factor, batch_size, 
+#  model_type, model_name, epoch, 
+#  input_resolution, head_channel,
+#  optimizer_name, enable_amp
+
+class: blueprint.ml.Trainer
+
+states_dir: $STATES(ARGS['cfg_file'])
+outputs_dir: $OUTPUTS(ARGS['cfg_file'])
+
+train_dataprocessor:
+  class: blueprint.ml.DataProcessor 
+  data_src:
+    class: blueprint.ml.DataSource
+    data_path: $BLOB('data/CelebAMaskHQ.train.512.v1.zip')
+    random_ratio: $ARGS.get('train_data_ratio', None)
+    subset_ids: $ARGS.get('train_subset_ids', None)
+    augmentations: $PARSE('../augmenters/celebm/train.yaml')
+  batch_size: $$batch_size
+  randomize: true
+
+eval_dataprocessors:
+  celebm_test:
+    class: blueprint.ml.DataProcessor
+    data_src:
+      class: blueprint.ml.DataSource
+      data_path: $BLOB('data/CelebAMaskHQ.test.512.v1.zip')
+      augmentations: $PARSE('../augmenters/celebm/test.yaml')
+      post_augmentations: $PARSE('../augmenters/celebm/test_post.yaml')
+    batch_size: $$batch_size
+    randomize: false
+
+networks:
+  main: 
+    $PARSE('../networks/farl.yaml',
+      model_type=ARGS['model_type'],
+      model_name=ARGS['model_name'],
+      epoch=ARGS['epoch'], 
+      input_resolution=ARGS['input_resolution'], 
+      head_channel=ARGS.get('head_channel', 768),
+      num_labels=19)
+  main_ema:
+    class: blueprint.ml.EMAConfig
+    network_name: main
+    decay: 0.999
+
+task_module:
+  class: FaceParsing
+  network_name: main
+  network_name_eval: main_ema
+  image_tag: warped_image
+  label_tag: warped_label
+  pred_logit_tag: pred_warped_logits
+
+scorer: $PARSE('../scorers/celebm.yaml')
+
+optimizer_cfg: 
+  $PARSE('../optimizers/{optimizer_name}.yaml'.format(
+    optimizer_name=ARGS['optimizer_name']))
+
+logger:
+  class: blueprint.ml.Loggers
+  loggers:
+  - class: blueprint.ml.StandardLogger
+  - class: blueprint.ml.TSVDataLogger
+  - class: blueprint.ml.TensorBoardLogger
+
+enable_amp: $$enable_amp
+max_epoches: 300
+states_save_interval: 20
+eval_interval: 1

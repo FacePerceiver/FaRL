@@ -1,0 +1,14 @@
+package: farl.experiments.face_alignment
+
+class: blueprint.ml.DistributedGPURun
+local_run:
+  $PARSE('./trainers/ibug300w_farl.yaml', 
+    cfg_file=FILE,
+    train_data_ratio=None,
+    batch_size=5,
+    model_type='base',
+    model_path=BLOB('checkpoint/FaRL-Base-Patch16-LAIONFace20M-ep16.pth'),
+    input_resolution=448,
+    head_channel=768,
+    optimizer_name='refine_backbone',
+    enable_amp=False)

@@ -1,0 +1,9 @@
+class: F1Score
+label_tag: label
+pred_label_tag: pred_label
+label_names:
+  ['background', 'neck', 'face', 'cloth', 'rr', 'lr', 'rb', 'lb', 're',
+   'le', 'nose', 'imouth', 'llip', 'ulip', 'hair',
+   'glass', 'hat', 'earr', 'neckl']
+compute_fg_mean: true
+bg_label_name: background

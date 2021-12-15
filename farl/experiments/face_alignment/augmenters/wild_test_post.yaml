@@ -1,0 +1,14 @@
+# +valid: bool
+# +pred_warped_landmarks: npoints x 2
+- class: With
+  tags_str: original_data -> image, crop_matrix, sample_name
+  aug:
+    class: UnwrapNonStackable
+- class: With
+  tags_str: pred_warped_landmarks, crop_matrix -> pred_landmarks
+  aug:
+  - class: TransformPoints2DInverted
+    warped_shape: [512, 512]
+    warp_factor: $$warp_factor    
+- class: Filter
+  tags: [image, pred_landmarks, sample_name, valid]
