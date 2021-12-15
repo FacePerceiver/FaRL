@@ -108,7 +108,6 @@ class FaRLVisualFeatures(nn.Module):
         self.register_buffer('image_std', torch.tensor(
             [0.26862954, 0.26130258, 0.27577711]).view(1, 3, 1, 1))
 
-        # print(f'torch.initial_seed() = {torch.initial_seed()}')
         if apply_fpn:
             self.fpns = _make_fpns(vision_patch_size, self.output_channels)
         else:

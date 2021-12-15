@@ -72,4 +72,4 @@ def heatmap2points(heatmap, t_scale: Union[None, float, torch.Tensor] = None):
     points = torch.stack([xx_coord, yy_coord], dim=-1)  # b x npoints x 2
 
     normalized_points = normalize_points(points, h, w)
-    return normalized_points  # .to(dtype=dtype)
+    return normalized_points
