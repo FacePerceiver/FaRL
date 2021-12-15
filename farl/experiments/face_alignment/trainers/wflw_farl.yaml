@@ -101,7 +101,6 @@ logger:
   - class: blueprint.ml.TensorBoardLogger
 
 enable_amp: $$enable_amp
-max_epoches: 300
+max_epoches: 150
 states_save_interval: 20
-# states_save_extra_steps: [0]
 eval_interval: 1

@@ -41,13 +41,13 @@ python -m blueprint.run farl/experiments/{task}/{train_config_file}.yaml --exp_n
 
 The repo has included some config files under `./farl/experiments/train_*` that perform finetuning for face parsing and face alignment:
 
-| File Name | Task | Benchmark | 
-| ---- | ---- | ---- |
-| face_parsing/train_celebm_farl-b-ep16-448_refinebb.yaml | Face Parsing  | CelebAMask-HQ |
-| face_parsing/train_lapa_farl-b-ep16_448_refinebb.yaml | Face Parsing | LaPa |
-| face_alignment/train_aflw19_farl-b-ep16_448_refinebb.yaml | Face Alignment | AFLW-19 |
-| face_alignment/train_ibug300w_farl-b-ep16_448_refinebb.yaml | Face Alignment | 300W |
-| face_alignment/train_wflw_farl-b-ep16_448_refinebb.yaml | Face Alignment | WFLW |
+| File Name | Task | Benchmark | Score (%) | Log |
+| ---- | ---- | ---- | --- | --- |
+| face_parsing/train_celebm_farl-b-ep16-448_refinebb.yaml | Face Parsing  | CelebAMask-HQ | F1-mean=89.56 | [Path](./logs/face_parsing.train_celebm_farl-b-ep16-448_refinebb) |
+| face_parsing/train_lapa_farl-b-ep16_448_refinebb.yaml | Face Parsing | LaPa | F1-mean=93.88 | [Path](./logs/face_parsing.train_lapa_farl-b-ep16_448_refinebb) |
+| face_alignment/train_aflw19_farl-b-ep16_448_refinebb.yaml | Face Alignment | AFLW-19 | NME_diag (Full)=0.943 | [Path](./logs/face_alignment.train_aflw19_farl-b-ep16_448_refinebb) |
+| face_alignment/train_ibug300w_farl-b-ep16_448_refinebb.yaml | Face Alignment | 300W | NME_inter-ocular (Full)=2.93 | [Path](./logs/face_alignment.train_ibug300w_farl-b-ep16_448_refinebb) |
+| face_alignment/train_wflw_farl-b-ep16_448_refinebb.yaml | Face Alignment | WFLW | NME_inter-ocular (Full)=3.96 | [Path](./logs/face_alignment.train_wflw_farl-b-ep16_448_refinebb) |
 
 Note that due to code refactorization, the evaluation scores might not be exactly the same with those reported in our paper, but should be at least comparable.
 

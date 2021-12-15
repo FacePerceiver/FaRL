@@ -6,7 +6,6 @@
 #  batch_size, 
 #  model_type, model_name, epoch, 
 #  input_resolution, head_channel,
-#  [with_tail],
 #  optimizer_name, [lr_factor], enable_amp
 
 package: farl.experiments.face_alignment
@@ -42,7 +41,7 @@ eval_dataprocessors:
   
 networks:
   main:
-    $PARSE('../networks/farl_with_tail.yaml' if ARGS.get('with_tail', False) else '../networks/farl.yaml',
+    $PARSE('../networks/farl.yaml',
       model_type=ARGS['model_type'],
       model_name=ARGS['model_name'],
       epoch=ARGS['epoch'], 
@@ -82,6 +81,6 @@ logger:
   - class: blueprint.ml.TensorBoardLogger
 
 enable_amp: $$enable_amp
-max_epoches: 50
+max_epoches: 150
 states_save_interval: 5
 eval_interval: 1
