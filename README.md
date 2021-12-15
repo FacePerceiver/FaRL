@@ -43,11 +43,11 @@ The repo has included some config files under `./farl/experiments/train_*` that 
 
 | File Name | Task | Benchmark | Metric | Score (%) | Log |
 | ---- | ---- | ---- | --- | --- | --- |
-| face_parsing/train_celebm_farl-b-ep16-448_refinebb.yaml | Face Parsing  | CelebAMask-HQ | F1-mean | 89.56 | [Path](./logs/face_parsing.train_celebm_farl-b-ep16-448_refinebb) |
-| face_parsing/train_lapa_farl-b-ep16_448_refinebb.yaml | Face Parsing | LaPa | F1-mean | 93.88 | [Path](./logs/face_parsing.train_lapa_farl-b-ep16_448_refinebb) |
-| face_alignment/train_aflw19_farl-b-ep16_448_refinebb.yaml | Face Alignment | AFLW-19 | NME_diag (Full) | 0.943 | [Path](./logs/face_alignment.train_aflw19_farl-b-ep16_448_refinebb) |
-| face_alignment/train_ibug300w_farl-b-ep16_448_refinebb.yaml | Face Alignment | 300W | NME_inter-ocular (Full) | 2.93 | [Path](./logs/face_alignment.train_ibug300w_farl-b-ep16_448_refinebb) |
-| face_alignment/train_wflw_farl-b-ep16_448_refinebb.yaml | Face Alignment | WFLW | NME_inter-ocular (Full) | 3.96 | [Path](./logs/face_alignment.train_wflw_farl-b-ep16_448_refinebb) |
+| face_parsing/<br/>train_celebm_farl-b-ep16-448_refinebb.yaml | Face Parsing  | CelebAMask-HQ | F1-mean | 89.56 | [Path](./logs/face_parsing.train_celebm_farl-b-ep16-448_refinebb) |
+| face_parsing/<br/>train_lapa_farl-b-ep16_448_refinebb.yaml | Face Parsing | LaPa | F1-mean | 93.88 | [Path](./logs/face_parsing.train_lapa_farl-b-ep16_448_refinebb) |
+| face_alignment/<br/>train_aflw19_farl-b-ep16_448_refinebb.yaml | Face Alignment | AFLW-19 (Full) | NME_diag | 0.943 | [Path](./logs/face_alignment.train_aflw19_farl-b-ep16_448_refinebb) |
+| face_alignment/<br/>train_ibug300w_farl-b-ep16_448_refinebb.yaml | Face Alignment | 300W (Full) | NME_inter-ocular | 2.93 | [Path](./logs/face_alignment.train_ibug300w_farl-b-ep16_448_refinebb) |
+| face_alignment/<br/>train_wflw_farl-b-ep16_448_refinebb.yaml | Face Alignment | WFLW (Full) | NME_inter-ocular | 3.96 | [Path](./logs/face_alignment.train_wflw_farl-b-ep16_448_refinebb) |
 
 
 ## Citation
