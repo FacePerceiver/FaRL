@@ -3,7 +3,7 @@
 
 # args: cfg_file, 
 #  [train_data_ratio], warp_factor, batch_size, 
-#  model_type, model_name, epoch, 
+#  model_type, model_path, 
 #  input_resolution, head_channel,
 #  optimizer_name, enable_amp
 
@@ -38,8 +38,7 @@ networks:
   main: 
     $PARSE('../networks/farl.yaml',
       model_type=ARGS['model_type'],
-      model_name=ARGS['model_name'],
-      epoch=ARGS['epoch'], 
+      model_path=ARGS['model_path'],
       input_resolution=ARGS['input_resolution'], 
       head_channel=ARGS.get('head_channel', 768),
       num_labels=19)
