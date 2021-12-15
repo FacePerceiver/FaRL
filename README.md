@@ -18,8 +18,8 @@ Different pre-trained models can be downloaded as below.
 
 | Model Name  |  Pre-training Data | Epoch | Link |
 | ----------- | -------------- | ----- | --- |
-| FaRL-Base-Patch16-20M-LAIONFace20M-ep16 | LAION Face 20M | 16  | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyPsG2M4uPXay7Au?e=Ocvk1T) |
-| FaRL-Base-Patch16-50M-LAIONFace50M-ep19 | LAION Face 50M | 19  | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyQYN5eZN0WzlVNb?e=KzlLWG) |
+| FaRL-Base-Patch16-LAIONFace20M-ep16 | LAION Face 20M | 16  | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyPsG2M4uPXay7Au?e=Ocvk1T) |
+| FaRL-Base-Patch16-LAIONFace50M-ep19 | LAION Face 50M | 19  | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyQYN5eZN0WzlVNb?e=KzlLWG) |
 
 Download these models to `./blob/checkpoint/`.
 

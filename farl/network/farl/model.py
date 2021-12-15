@@ -29,7 +29,7 @@ class Bottleneck(nn.Module):
             self.downsample = nn.Sequential(OrderedDict([
                 ("-1", nn.AvgPool2d(stride)),
                 ("0", nn.Conv2d(inplanes, planes *
-                 self.expansion, 1, stride=1, bias=False)),
+                                self.expansion, 1, stride=1, bias=False)),
                 ("1", nn.BatchNorm2d(planes * self.expansion))
             ]))
 
@@ -336,7 +336,7 @@ class VisualTransformer(nn.Module):
         x = x.reshape(x.shape[0], x.shape[1], -1)
         x = x.permute(0, 2, 1)  # shape = [*, grid ** 2, width]
         x = torch.cat([self.class_embedding.to(x.dtype) + torch.zeros(x.shape[0], 1, x.shape[-1],
-                      dtype=x.dtype, device=x.device), x], dim=1)  # shape = [*, grid ** 2 + 1, width]
+                                                                      dtype=x.dtype, device=x.device), x], dim=1)  # shape = [*, grid ** 2 + 1, width]
         x = x + self.positional_embedding.to(x.dtype)
         x = self.ln_pre(x)
         x = x.permute(1, 0, 2)  # NLD -> LND
@@ -375,8 +375,9 @@ class VisualTransformer(nn.Module):
         else:
             x = torch.cat([x, masked_x], 0)
             masked_start = batch_size
-        x = torch.cat([self.class_embedding.to(x.dtype) + torch.zeros(x.shape[0], 1, x.shape[-1],
-                      dtype=x.dtype, device=x.device), x], dim=1)  # shape = [*, grid ** 2 + 1, width]
+        x = torch.cat([self.class_embedding.to(x.dtype) + torch.zeros(
+            x.shape[0], 1, x.shape[-1],
+            dtype=x.dtype, device=x.device), x], dim=1)  # shape = [*, grid ** 2 + 1, width]
         x = x + self.positional_embedding.to(x.dtype)
         x = self.ln_pre(x)
         x = x.permute(1, 0, 2)  # NLD -> LND
@@ -398,42 +399,6 @@ class VisualTransformer(nn.Module):
                 x = x @ self.proj
             result["feature"] = x
         return result
-
-    def extract(self, x: torch.Tensor):
-        x = self.conv1(x)  # shape = [*, width, grid, grid]
-        # shape = [*, width, grid ** 2]
-        x = x.reshape(x.shape[0], x.shape[1], -1)
-        x = x.permute(0, 2, 1)  # shape = [*, grid ** 2, width]
-        x = torch.cat([self.class_embedding.to(x.dtype) + torch.zeros(x.shape[0], 1, x.shape[-1],
-                      dtype=x.dtype, device=x.device), x], dim=1)  # shape = [*, grid ** 2 + 1, width]
-        x = x + self.positional_embedding.to(x.dtype)
-        x = self.ln_pre(x)
-        x = x.permute(1, 0, 2)  # NLD -> LND
-        x = self.transformer(x, return_all=True)
-        return x
-
-    def encode_image_cls(self, image):
-        y1 = self.extract(image)
-        y1 = y1[-1][0]
-        if hasattr(self, "head"):
-            y1 = self.head(y1)
-        return y1
-
-    def encode_image_mean(self, image):
-        y = self.extract(image)
-        y1 = y[-1][1:].mean(0)
-        if hasattr(self, "head"):
-            y1 = self.head(y1)
-        return y1
-
-    def encode_image_both(self, image):
-        y = self.extract(image)
-        y1 = y[-1][1:].mean(0)
-        y2 = y[-1][0]
-        y = torch.cat([y1, y2], -1)
-        if hasattr(self, "head"):
-            y = self.head(y)
-        return y
 
 
 def load_farl(model_type, model_file) -> VisualTransformer:
