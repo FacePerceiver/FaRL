@@ -4,7 +4,6 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 import torch.utils.checkpoint as checkpoint
-from .utils.comm import comm
 import numpy as np
 from timm.models.layers import trunc_normal_, DropPath
 
@@ -126,19 +125,11 @@ class ModifiedResNet(nn.Module):
 
     def _init_weights(self, m):
         if isinstance(m, (nn.BatchNorm2d, LayerNorm)):
-            if comm.is_main_process():
-                logging.debug('=> init {} gamma to 1'.format(m))
-                logging.debug('=> init {} beta to 0'.format(m))
             nn.init.constant_(m.weight, 1)
             nn.init.constant_(m.bias, 0)
         elif isinstance(m, (nn.Linear, nn.Conv2d)):
-            if comm.is_main_process():
-                logging.debug(
-                    '=> init weight of Linear/Conv2d from tranc norm')
             trunc_normal_(m.weight, std=0.02)
             if m.bias is not None:
-                if comm.is_main_process():
-                    logging.debug('=> init bias of Linear/Conv2d to zeros')
                 nn.init.constant_(m.bias, 0)
 
     def _make_layer(self, planes, blocks, stride=1):
@@ -246,13 +237,8 @@ class Transformer(nn.Module):
 
     def _init_weights(self, m):
         if isinstance(m, (nn.Linear, nn.Conv2d)):
-            if comm.is_main_process():
-                logging.debug(
-                    '=> init weight of Linear/Conv2d from trunc norm')
             trunc_normal_(m.weight, std=0.02)
             if m.bias is not None:
-                if comm.is_main_process():
-                    logging.debug('=> init bias of Linear/Conv2d to zeros')
                 nn.init.constant_(m.bias, 0)
         elif isinstance(m, (nn.LayerNorm, nn.BatchNorm2d)):
             nn.init.constant_(m.bias, 0)
@@ -335,13 +321,8 @@ class VisualTransformer(nn.Module):
 
     def _init_weights(self, m):
         if isinstance(m, (nn.Linear, nn.Conv2d, nn.Conv1d)):
-            if comm.is_main_process():
-                logging.debug(
-                    '=> init weight of Linear/Conv2d from trunc norm')
             trunc_normal_(m.weight, std=0.02)
             if m.bias is not None:
-                if comm.is_main_process():
-                    logging.debug('=> init bias of Linear/Conv2d to zeros')
                 nn.init.constant_(m.bias, 0)
         elif isinstance(m, (nn.LayerNorm, nn.BatchNorm2d)):
             nn.init.constant_(m.bias, 0)

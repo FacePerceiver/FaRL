@@ -19,4 +19,3 @@ from .network import FaceAlignmentTransformer
 from .task import FaceAlignment
 from .scorer import (NME, NormalizeByLandmarks,
                      NormalizeByBox, NormalizeByBoxDiag, AUC_FR)
-from .outputer import FaceAlignmentOutputer
