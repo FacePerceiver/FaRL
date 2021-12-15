@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 # args: [lr_factor]
 
 optimizer_type: torch.optim.AdamW

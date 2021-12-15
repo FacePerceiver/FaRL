@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 class: NME
 landmark_tag: landmarks
 pred_landmark_tag: pred_landmarks

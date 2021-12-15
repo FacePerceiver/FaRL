@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 # args: model_type, model_path, input_resolution, head_channel, num_labels
 
 class: FaceParsingTransformer

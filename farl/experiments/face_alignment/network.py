@@ -1,7 +1,8 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 from typing import List, Optional
-
 import torch.nn as nn
-
 from ...network import Activation, heatmap2points
 
 

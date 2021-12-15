@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 class: blueprint.ml.DataProcessor 
 data_src:
   class: blueprint.ml.DataSource

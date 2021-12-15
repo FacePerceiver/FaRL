@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 from typing import Mapping, List, Union, Optional
 from collections import defaultdict
 
@@ -114,8 +117,6 @@ class NME(Scorer):
 
         # compute nme scores
         for name, nmes_sum_val, count_val in zip(names_array, nmes_sum, count_sum):
-            # print(f'Note: NME is calculated with '
-            #       f'{count_val.item()} data in total')
             scores[name] = nmes_sum_val.item() / count_val.item()
 
         # compute final nme
@@ -169,12 +170,6 @@ class AUC_FR(Scorer):
             nmes = self.nmes
         nmes = torch.tensor(nmes)
 
-        # nmes = torch.tensor(self.nmes, dtype=torch.float32, device='cuda')
-        # if dist.is_initialized():
-        #     all_nmes_list = [t.cuda() for t in all_gather(nmes)]  # list of tensors
-        #     nmes = torch.cat(all_nmes_list)
-        # print(f'In total {nmes.size(0)} nmes are collected.')
-
         nmes = nmes.sort(dim=0).values.cpu().numpy()
 
         # from https://github.com/HRNet/HRNet-Facial-Landmark-Detection/issues/6#issuecomment-503898737
@@ -183,28 +178,5 @@ class AUC_FR(Scorer):
         ced = [float(np.count_nonzero([nmes <= x])) / count for x in xaxis]
         auc = simps(ced, x=xaxis) / self.threshold
         fr = 1. - ced[-1]
-
-        # # compute ced locally
-        # xaxis = list(np.arange(0., self.threshold + self.step, self.step))
-        # local_count = len(self.nmes)
-        # local_ced_raw = np.array(
-        #     [float(np.count_nonzero([self.nmes <= x])) for x in xaxis])
-        # if dist.is_initialized():
-        #     placeholder = torch.tensor(
-        #         local_count, dtype=torch.int32, device='cuda')
-        #     dist.reduce(placeholder)
-        #     count = placeholder.item()
-
-        #     placeholder = torch.from_numpy(local_ced_raw).to(
-        #         dtype=torch.int32, device='cuda')
-        #     dist.reduce(placeholder)
-        #     ced_raw = placeholder.cpu().numpy()
-        # else:
-        #     count = local_count
-        #     ced_raw = local_ced_raw
-
-        # ced = ced_raw / float(count)
-        # auc = simps(ced, x=xaxis) / self.threshold
-        # fr = 1. - ced[-1]
 
         return {f'auc_{self.suffix_name}': auc, f'fr_{self.suffix_name}': fr}

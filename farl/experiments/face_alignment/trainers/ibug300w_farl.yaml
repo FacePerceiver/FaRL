@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 # args: cfg_file, 
 #  [train_data_ratio], [train_subset_ids], [test_subset_ids],
 #  batch_size, 

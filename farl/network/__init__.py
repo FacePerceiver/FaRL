@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 from .common import (load_checkpoint, Activation, MLP, Residual)
 from .geometry import (normalize_points, denormalize_points,
                        points2heatmap, heatmap2points)

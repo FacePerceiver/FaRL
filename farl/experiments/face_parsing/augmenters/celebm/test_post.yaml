@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 # +valid: bool
 # +pred_warped_logits: h x w x c
 - class: With

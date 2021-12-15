@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 #include "p2i_max.h"
 
 namespace haya_ext {

@@ -1,8 +1,11 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 - class: With
   tags_str: image -> image
   aug:
     class: Normalize255
-# update align_matrix
+# update crop_matrix
 - class: AttachConstData
   tag_name: shape
   const_data: [512, 512]
@@ -13,7 +16,7 @@
     target_shape: [512, 512]
     scale_mu: $$scale_mu
     ret_shape: true
-# warp image & label using the align_matrix
+# warp image & label using the crop_matrix
 - class: With
   tags_str: crop_matrix -> transform_map
   aug:

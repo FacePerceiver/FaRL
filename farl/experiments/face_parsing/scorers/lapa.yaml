@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 class: F1Score
 label_tag: label
 pred_label_tag: pred_label
