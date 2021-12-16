@@ -39,7 +39,7 @@ Now you can launch the trainings with following command template.
 python -m blueprint.run farl/experiments/{task}/{train_config_file}.yaml --exp_name farl --blob_root ./blob
 ```
 
-The repo has included some config files under `./farl/experiments/train_*` that perform finetuning for face parsing and face alignment.
+The repo has included some config files under `./farl/experiments/` that perform finetuning for face parsing and face alignment.
 The following table illustrates their performences reported in the paper.
 
 | File Name | Task | Benchmark | Metric | Score (%) | Log |
