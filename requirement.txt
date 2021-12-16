@@ -2,5 +2,4 @@ timm==0.4.12
 py-blueprint==0.0.1.post3
 mmsegmentation==0.18.0
 ftfy==6.0.1
-timm==0.4.12
 einops==0.3.2
