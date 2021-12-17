@@ -16,10 +16,10 @@ After the pre-training, the image encoder can be utilized for various downstream
 
 Different pre-trained models can be downloaded as below.
 
-| Model Name  |  Pre-training Data | Epoch | Link |
+| Model Name  |  Pre-training Data | Link |
 | ----------- | -------------- | ----- | --- |
-| FaRL-Base-Patch16-LAIONFace20M-ep16 (used in paper) | LAION Face 20M | 16  | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyPsG2M4uPXay7Au?e=Ocvk1T) |
-| FaRL-Base-Patch16-LAIONFace50M-ep19 | LAION Face 50M | 19  | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyQYN5eZN0WzlVNb?e=KzlLWG) |
+| FaRL-Base-Patch16-LAIONFace20M-ep16 (used in paper) | LAION Face 20M  | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyPsG2M4uPXay7Au?e=Ocvk1T) |
+| FaRL-Base-Patch16-LAIONFace50M-ep16 | LAION Face 50M | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyZp2z2DdUNoqTVp?e=T7C1QA) |
 
 Download these models to `./blob/checkpoint/`.
 
