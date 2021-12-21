@@ -14,8 +14,8 @@ First, create directory `./blob/data` and download all the datasets.
 
 ### AFLW-19
 
-* Download the annotations from http://mmlab.ie.cuhk.edu.hk/projects/compositional/AFLWinfo_release.mat to `./blob/data/AFLW19/AFLWinfo_release.mat`.
-* Download the images following instructions given by https://www.tugraz.at/institute/icg/research/team-bischof/lrs/downloads/aflw/#download. Uncompress the aflw-images-{0,2,3}.tar.gz files to `./blob/data/AFLW19/`, make sure `./blob/data/AFLW19/data/flickr/{0, 2, 3}/` exists.
+* Download the annotations from http://mmlab.ie.cuhk.edu.hk/projects/compositional/AFLWinfo_release.mat to `./blob/data/AFLW-19/AFLWinfo_release.mat`.
+* Download the images following instructions given by https://www.tugraz.at/institute/icg/research/team-bischof/lrs/downloads/aflw/#download. Uncompress the aflw-images-{0,2,3}.tar.gz files to `./blob/data/AFLW-19/`, make sure `./blob/data/AFLW-19/data/flickr/{0, 2, 3}/` exists.
 
 
 ### IBUG300W & WFLW
