@@ -50,7 +50,7 @@ blob/data/
 │   ├── list_eval_partition.txt
 │   └── CelebA-HQ-to-CelebA-mapping.txt
 │
-├── AFLW19/  
+├── AFLW-19/  
 │   ├── AFLWinfo_release.mat
 │   └── data/
 │       └── flickr/
