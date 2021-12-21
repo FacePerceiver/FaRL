@@ -43,8 +43,8 @@ def freeze_lapa(data_root):
 
 def freeze_celebamaskhq(data_root):
     print('Freezing CelebAMaskHQ ...')
-    ds_train = CelebAMaskHQ(os.path.join(data_root, 'CelebAMaskHQ'), TRAIN)
-    ds_test = CelebAMaskHQ(os.path.join(data_root, 'CelebAMaskHQ'), TEST)
+    ds_train = CelebAMaskHQ(os.path.join(data_root, 'CelebAMask-HQ'), TRAIN)
+    ds_test = CelebAMaskHQ(os.path.join(data_root, 'CelebAMask-HQ'), TEST)
     print(f'train: {len(ds_train)}, test: {len(ds_test)}')
 
     aug_512 = [
