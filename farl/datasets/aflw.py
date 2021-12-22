@@ -13,7 +13,7 @@ class AFLW_19(Dataset):
     def __init__(self, root, split=Split.ALL, subset: str = 'full'):
         self.images_root = os.path.join(root, 'AFLW-19' 'data', 'flickr')
         info = scipy.io.loadmat(os.path.join(
-            root, 'AFLW19', 'AFLWinfo_release.mat'))
+            root, 'AFLW-19', 'AFLWinfo_release.mat'))
         self.bbox = info['bbox']  # 24386x4 left, right, top bottom
         self.data = info['data']  # 24386x38 x1,x2...,xn,y1,y2...,yn
         self.mask = info['mask_new']  # 24386x19
