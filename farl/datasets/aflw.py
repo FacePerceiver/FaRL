@@ -11,7 +11,7 @@ from blueprint.ml import Dataset, Split
 
 class AFLW_19(Dataset):
     def __init__(self, root, split=Split.ALL, subset: str = 'full'):
-        self.images_root = os.path.join(root, 'AFLW19' 'data', 'flickr')
+        self.images_root = os.path.join(root, 'AFLW-19' 'data', 'flickr')
         info = scipy.io.loadmat(os.path.join(
             root, 'AFLW19', 'AFLWinfo_release.mat'))
         self.bbox = info['bbox']  # 24386x4 left, right, top bottom
