@@ -39,8 +39,10 @@ class AFLW_19(Dataset):
 
     def __getitem__(self, index):
         ind = self.indices[index]
-        image = cv2.cvtColor(cv2.imread(os.path.join(
-            self.images_root, self.name_list[ind])), cv2.COLOR_BGR2RGB)
+        image_path = os.path.join(
+            self.images_root, self.name_list[ind])
+        assert os.path.exists(image_path)
+        image = cv2.cvtColor(cv2.imread(image_path), cv2.COLOR_BGR2RGB)
         landmarks = np.reshape(self.data[ind], [2, 19]).transpose()
 
         left, right, top, bottom = self.bbox[ind]
