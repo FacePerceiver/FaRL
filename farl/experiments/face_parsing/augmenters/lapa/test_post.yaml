@@ -1,0 +1,30 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+# args: warp_factor
+
+# +valid: bool
+# +pred_warped_logits: h x w x c
+- class: With
+  tags_str: original_data -> image, label, align_matrix
+  aug:
+    class: UnwrapNonStackable
+- class: With
+  tags_str: image -> image_shape
+  aug:
+    class: GetShape
+- class: With
+  tags_str: align_matrix, image_shape -> transform_map_inv
+  aug:
+    class: GetInvertedTransformMap
+    warped_shape: [512, 512]
+    warp_factor: $$warp_factor
+- class: With
+  tags_str: pred_warped_logits, transform_map_inv -> pred_label
+  aug:
+  - class: TransformByMap
+    interpolation: bilinear
+  - class: ArgMax
+    axis: -1
+- class: Filter
+  tags: [label, pred_label, valid]

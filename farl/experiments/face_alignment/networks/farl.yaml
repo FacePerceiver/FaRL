@@ -1,0 +1,18 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+# args: model_type, model_path, input_resolution, head_channel, num_landmarks
+
+class: FaceAlignmentTransformer
+backbone:
+  class: farl.network.FaRLVisualFeatures
+  model_type: $$model_type
+  model_path: $$model_path
+  output_indices: $ARGS.get('output_indices', None)
+  forced_input_resolution: $$input_resolution
+heatmap_head:
+  class: farl.network.MMSEG_UPerHead
+  in_channels: $[FaRLVisualFeatures.get_output_channel(ARGS['model_type'])]*4
+  channels: $$head_channel
+  num_classes: $$num_landmarks
+heatmap_act: sigmoid

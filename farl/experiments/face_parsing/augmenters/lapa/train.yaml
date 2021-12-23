@@ -1,0 +1,65 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+# args: warp_factor
+
+- class: With
+  tags_str: image -> image
+  aug:
+    class: Normalize255
+
+# update align_matrix
+- class: AttachConstData
+  tag_name: shape
+  const_data: [512, 512]
+- class: With
+  tags_str: shape, align_matrix -> shape, align_matrix
+  aug:
+    class: UpdateRandomTransformMatrix
+    target_shape: [512, 512]
+    shift_sigma: 0.01
+    rot_sigma: 0.314
+    scale_sigma: 0.1
+    shift_normal: false
+    ret_shape: true
+
+# warp image & label using the align_matrix
+- class: With
+  tags_str: align_matrix -> transform_map
+  aug:
+    class: GetTransformMap
+    warped_shape: [512, 512]
+    warp_factor: $$warp_factor
+- class: With
+  tags_str: image, transform_map -> warped_image
+  aug:
+    class: TransformByMap
+    interpolation: bilinear
+- class: With
+  tags_str: label, transform_map -> warped_label
+  aug:
+    class: TransformByMap
+    interpolation: nearest
+    outlier_value: 0
+- class: With
+  tags_str: label -> valid_mask
+  aug:
+    class: FullLike
+    fill_value: 1
+- class: With
+  tags_str: valid_mask, transform_map -> warped_valid_mask
+  aug:
+    class: TransformByMap
+    interpolation: nearest
+    outlier_value: 0
+
+# color augmentation on image
+- class: With
+  tags_str: warped_image -> warped_image
+  aug:
+  - class: RandomGray
+  - class: RandomGamma
+  - class: RandomBlur
+
+- class: Filter
+  tags: [warped_image, warped_label, warped_valid_mask]

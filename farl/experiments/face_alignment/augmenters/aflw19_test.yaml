@@ -1,0 +1,37 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+- class: With
+  tags_str: image -> image
+  aug:
+    class: Normalize255
+# update crop_matrix
+- class: AttachConstData
+  tag_name: shape
+  const_data: [512, 512]
+- class: With
+  tags_str: shape, crop_matrix -> shape, crop_matrix
+  aug:
+    class: UpdateTransformMatrix
+    target_shape: [512, 512]
+    scale_mu: $$scale_mu
+    ret_shape: true
+# warp image & label using the crop_matrix
+- class: With
+  tags_str: crop_matrix -> transform_map
+  aug:
+    class: GetTransformMap
+    warped_shape: [512, 512]
+    warp_factor: $$warp_factor
+- class: With
+  tags_str: image, transform_map -> warped_image
+  aug:
+    class: TransformByMap
+    interpolation: bilinear
+# make some original data non-stackable
+- class: With
+  tags_str: image, landmarks, crop_matrix, box, sample_name -> original_data
+  aug:
+    class: MakeNonStackable
+- class: Filter
+  tags: [warped_image, original_data]

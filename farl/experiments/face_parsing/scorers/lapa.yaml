@@ -1,0 +1,20 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+class: F1Score
+label_tag: label
+pred_label_tag: pred_label
+label_names:
+- background
+- face_lr_rr
+- lb
+- rb
+- le
+- re
+- nose
+- ul
+- im
+- ll
+- hair
+compute_fg_mean: true
+bg_label_name: background

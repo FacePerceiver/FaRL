@@ -1,0 +1,33 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+class: blueprint.ml.MultipleScorers
+scorers:
+- class: NME
+  landmark_tag: landmarks
+  pred_landmark_tag: pred_landmarks
+  normalize_infos:
+    inter_ocular: 
+      class: NormalizeByLandmarks
+      landmark_tag: landmarks
+      left_id: 6
+      right_id: 11
+    inter_pupil:
+      class: NormalizeByLandmarks
+      landmark_tag: landmarks
+      left_id: 7
+      right_id: 10
+    box:
+      class: NormalizeByBox
+      box_tag: box
+    diag:
+      class: NormalizeByBoxDiag
+      box_tag: box
+- class: AUC_FR
+  landmark_tag: landmarks
+  pred_landmark_tag: pred_landmarks
+  normalize_info:
+    class: NormalizeByBox
+    box_tag: box
+  threshold: 0.07
+  suffix_name: box_7

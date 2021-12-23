@@ -1,0 +1,17 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+# +valid: bool
+# +pred_warped_landmarks: npoints x 2
+- class: With
+  tags_str: original_data -> image, landmarks, crop_matrix, box, sample_name
+  aug:
+    class: UnwrapNonStackable
+- class: With
+  tags_str: pred_warped_landmarks, crop_matrix -> pred_landmarks
+  aug:
+  - class: TransformPoints2DInverted
+    warped_shape: [512, 512]
+    warp_factor: $$warp_factor    
+- class: Filter
+  tags: [landmarks, pred_landmarks, box, sample_name, valid]

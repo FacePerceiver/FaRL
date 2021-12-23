@@ -1,0 +1,99 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
+# args: cfg_file, 
+#  [train_data_ratio], [train_subset_ids], [test_subset_ids],
+#  batch_size, 
+#  model_type, model_path, 
+#  input_resolution, head_channel,
+#  optimizer_name, [lr_factor], enable_amp
+
+package: farl.experiments.face_alignment
+
+class: blueprint.ml.Trainer
+
+states_dir: $STATES(ARGS['cfg_file'])
+outputs_dir: $OUTPUTS(ARGS['cfg_file'])
+
+train_dataprocessor:
+  class: blueprint.ml.DataProcessor 
+  data_src:
+    class: blueprint.ml.DataSource
+    data_path: $BLOB('data/IBUG300W.train.zip')
+    random_ratio: $ARGS.get('train_data_ratio', None)
+    subset_ids: $ARGS.get('train_subset_ids', None)
+    augmentations: 
+      $PARSE('../augmenters/train.yaml', 
+        shift_sigma=0.05, rot_sigma=0.174, scale_sigma=0.1, 
+        scale_mu=0.8, warp_factor=0.0)
+  batch_size: $$batch_size
+  randomize: true
+
+eval_dataprocessors:
+  ibug300w_test_common:
+    $PARSE('../eval_data/ibug300w_test.yaml', 
+      subset='common', scale_mu=0.8, warp_factor=0.0, batch_size=ARGS['batch_size'],
+      subset_ids=ARGS.get('test_subset_ids', None))
+  ibug300w_test_challenging:
+    $PARSE('../eval_data/ibug300w_test.yaml', 
+      subset='challenging', scale_mu=0.8, warp_factor=0.0, batch_size=ARGS['batch_size'],
+      subset_ids=ARGS.get('test_subset_ids', None))
+  ibug300w_test_full:
+    class: blueprint.ml.DataProcessor
+    data_src:
+      class: blueprint.ml.DataSource
+      data_path: 
+      - $BLOB('data/IBUG300W.test_common.zip') # image, crop_matrix, landmarks
+      - $BLOB('data/IBUG300W.test_challenging.zip') # image, crop_matrix, landmarks
+      subset_ids: $ARGS.get('test_subset_ids', None)
+      augmentations: 
+        $PARSE('../augmenters/test.yaml', scale_mu=0.8, warp_factor=0.0)
+      post_augmentations:
+        $PARSE('../augmenters/test_post.yaml', warp_factor=0.0)
+    batch_size: $$batch_size
+    randomize: false
+  
+networks:
+  main:
+    $PARSE('../networks/farl.yaml',
+      model_type=ARGS['model_type'],
+      model_path=ARGS['model_path'],
+      input_resolution=ARGS['input_resolution'], 
+      head_channel=ARGS.get('head_channel', 768),
+      num_landmarks=68)
+  main_ema:
+    class: blueprint.ml.EMAConfig
+    network_name: main
+    decay: 0.999
+
+task_module:
+  class: FaceAlignment
+  network_name: main
+  network_name_eval: main_ema
+  image_tag: warped_image
+  landmark_tag: warped_landmarks
+  pred_landmark_tag: pred_warped_landmarks
+  loss_weights:
+    coord_l1_loss: 1.0
+    heatmap_ce_loss: 1.0
+  heatmap_size: 128
+  heatmap_radius: 5.0
+
+scorer: $PARSE('../scorers/ibug300w.yaml')
+
+optimizer_cfg:
+  $PARSE('../optimizers/{optimizer_name}.yaml'.format(
+    optimizer_name=ARGS['optimizer_name']), 
+    lr_factor=ARGS.get('lr_factor', 1.0))
+
+logger:
+  class: blueprint.ml.Loggers
+  loggers:
+  - class: blueprint.ml.StandardLogger
+  - class: blueprint.ml.TSVDataLogger
+  - class: blueprint.ml.TensorBoardLogger
+
+enable_amp: $$enable_amp
+max_epoches: 250
+states_save_interval: 20
+eval_interval: 1
