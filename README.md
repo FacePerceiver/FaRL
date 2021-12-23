@@ -41,9 +41,9 @@ python -m blueprint.run farl/experiments/{task}/{train_config_file}.yaml --exp_n
 
 The repo has included some config files under `./farl/experiments/` that perform finetuning for face parsing and face alignment.
 
-## Performence
+## Performance
 
-The following table illustrates their performences reported in the paper (Paper) or reproduced using this repo (Rep). There are small differences between their performences due to code refactorization.
+The following table illustrates their performances reported in the paper (Paper) or reproduced using this repo (Rep). There are small differences between their performances due to code refactorization.
 
 | File Name | Task | Benchmark | Metric | Score (Paper/Rep) | Logs (Paper/Rep) |
 | ---- | ---- | ---- | --- | --- | --- |
