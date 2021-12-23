@@ -53,7 +53,7 @@ The following table illustrates their performances reported in the paper (Paper)
 | [face_alignment/<br/>train_ibug300w_farl-b-ep16_448_refinebb.yaml](./farl/experiments/face_alignment/train_ibug300w_farl-b-ep16_448_refinebb.yaml) | Face Alignment | 300W (Full) | NME_inter-ocular ⇓ | 2.93/2.92 | [Paper](./logs/paper/face_alignment.train_ibug300w_farl-b-ep16_448_refinebb), [Rep](./logs/reproduce/face_alignment.train_ibug300w_farl-b-ep16_448_refinebb) |
 | [face_alignment/<br/>train_wflw_farl-b-ep16_448_refinebb.yaml](./farl/experiments/face_alignment/train_wflw_farl-b-ep16_448_refinebb.yaml) | Face Alignment | WFLW (Full) | NME_inter-ocular ⇓ | 3.96/3.98 | [Paper](./logs/paper/face_alignment.train_wflw_farl-b-ep16_448_refinebb), [Rep](./logs/reproduce/face_alignment.train_wflw_farl-b-ep16_448_refinebb) |
 
-We also report performences using the 50M pre-trained backbone. It further enhances on LaPa and AFLW-19.
+We also report results using the 50M pre-trained backbone, showing further enhancement on LaPa and AFLW-19.
 
 | File Name | Task | Benchmark | Metric | Score | Logs |
 | ---- | ---- | ---- | --- | --- | --- |
