@@ -43,7 +43,7 @@ The repo has included some config files under `./farl/experiments/` that perform
 
 ## Performence
 
-The following table illustrates their performences reported in the paper (Paper) or reproduced by using repo (Rep). There are small differences between their performences due to code refactorization.
+The following table illustrates their performences reported in the paper (Paper) or reproduced using this repo (Rep). There are small differences between their performences due to code refactorization.
 
 | File Name | Task | Benchmark | Metric | Score (Paper/Rep) | Logs (Paper/Rep) |
 | ---- | ---- | ---- | --- | --- | --- |
