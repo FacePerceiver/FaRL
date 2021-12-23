@@ -22,7 +22,6 @@ def freeze_lapa(data_root):
     print(f'train: {len(ds_train)}, test: {len(ds_test)}')
 
     aug_512 = [
-        aug.With('image', 'image', aug.Normalize255()),
         aug.With('landmarks', 'face_align_pts',
                  lambda landmarks:landmarks[[104, 105, 54, 84, 90], :]),
         aug.With('face_align_pts', 'align_matrix',
