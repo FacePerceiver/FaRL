@@ -3,7 +3,7 @@
 
 import math
 
-from typing import Optional, List
+from typing import Optional, List, Tuple
 
 import torch
 import torch.nn as nn
@@ -131,7 +131,7 @@ class FaRLVisualFeatures(nn.Module):
         if model_type == 'huge':
             return [8, 14, 20, 31]
 
-    def forward(self, image: torch.Tensor) -> List[torch.Tensor]:
+    def forward(self, image: torch.Tensor) -> Tuple[List[torch.Tensor], List[torch.Tensor]]:
         # b x 3 x res x res
         _, _, input_h, input_w = image.shape
         if input_h != self.input_resolution or input_w != self.input_resolution:
