@@ -5,7 +5,7 @@ This repo hosts official implementation of our paper "[**General Facial Represen
 
 ## Introduction
 
-**FaRL** offers powerful pre-training backbones for face analysis tasks. Its pre-training combines both the image-text contrastive learning and the masked image modeling.
+**FaRL** offers powerful pre-training transformer backbones for face analysis tasks. Its pre-training combines both the image-text contrastive learning and the masked image modeling.
 
 <img src="./figures/framework.jpg" alt="framework" width="400"/>
 
@@ -14,7 +14,7 @@ After the pre-training, the image encoder can be utilized for various downstream
 
 ## Setup Downstream Training
 
-Different pre-trained models can be downloaded as below.
+Different pre-trained transformer backbones can be downloaded as below.
 
 | Model Name  |  Pre-training Data | Link |
 | ----------- | -------------- | ----- |
