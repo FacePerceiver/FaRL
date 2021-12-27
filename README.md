@@ -1,5 +1,12 @@
 # *FaRL* for *Fa*cial *R*epresentation *L*earning
 
+	
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/general-facial-representation-learning-in-a/face-alignment-on-300w)](https://paperswithcode.com/sota/face-alignment-on-300w?p=general-facial-representation-learning-in-a)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/general-facial-representation-learning-in-a/face-alignment-on-aflw-19)](https://paperswithcode.com/sota/face-alignment-on-aflw-19?p=general-facial-representation-learning-in-a)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/general-facial-representation-learning-in-a/face-alignment-on-wflw)](https://paperswithcode.com/sota/face-alignment-on-wflw?p=general-facial-representation-learning-in-a)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/general-facial-representation-learning-in-a/face-parsing-on-celebamask-hq)](https://paperswithcode.com/sota/face-parsing-on-celebamask-hq?p=general-facial-representation-learning-in-a)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/general-facial-representation-learning-in-a/face-parsing-on-lapa)](https://paperswithcode.com/sota/face-parsing-on-lapa?p=general-facial-representation-learning-in-a)
+
 This repo hosts official implementation of our paper "[**General Facial Representation Learning in a Visual-Linguistic Manner**](https://arxiv.org/abs/2112.03109)".
 
 
