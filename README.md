@@ -26,6 +26,7 @@ Different pre-trained transformer backbones can be downloaded as below.
 | Model Name  |  Pre-training Data | Link |
 | ----------- | -------------- | ----- |
 | FaRL-Base-Patch16-LAIONFace20M-ep16 (used in paper) | LAION Face 20M  | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyPsG2M4uPXay7Au?e=Ocvk1T), [BLOB](https://facevcstandard.blob.core.windows.net/haya/releases/farl/FaRL-Base-Patch16-LAIONFace20M-ep16.pth?sv=2020-08-04&st=2021-12-17T13%3A00%3A07Z&se=2025-01-18T13%3A00%3A00Z&sr=b&sp=r&sig=D0ZPJgp8BrAgHIdACfZzqPnyOcX1ivGdHnF8qgtWdoI%3D) |
+| FaRL-Base-Patch16-LAIONFace20M-ep64 | LAION Face 20M  | [BLOB](https://facevcstandard.blob.core.windows.net/haya/releases/farl/FaRL-Base-Patch16-LAIONFace20M-ep64.pth?sv=2020-08-04&st=2021-12-27T05%3A22%3A56Z&se=2025-12-21T05%3A22%3A00Z&sr=b&sp=r&sig=til1J9u%2FQqf6qRc6cPx9nPyOGl%2F9ahTyvQ3VBPePs6A%3D) |
 | FaRL-Base-Patch16-LAIONFace50M-ep16 | LAION Face 50M | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyZp2z2DdUNoqTVp?e=T7C1QA), [BLOB](https://facevcstandard.blob.core.windows.net/haya/releases/farl/FaRL-Base-Patch16-LAIONFace50M-ep16.pth?sv=2020-08-04&st=2021-12-17T13%3A01%3A48Z&se=2025-01-17T13%3A01%3A00Z&sr=b&sp=r&sig=6g1B3f4vEmFc1tmz8QWSH6lRoK%2BABA%2FWfmqXLGS61MM%3D) |
 
 Download these models to `./blob/checkpoint/`.
