@@ -61,7 +61,9 @@ python -m blueprint.run \
 Or if you would like to launch a face alignment training on 300W by finetuning our `FaRL-Base-Patch16-LAIONFace20M-ep16` pre-training, you can simply run with:
 
 ```
-python -m blueprint.run farl/experiments/face_alignment/train_ibug300w_farl-b-ep16_448_refinebb.yaml --exp_name farl --blob_root ./blob
+python -m blueprint.run \
+  farl/experiments/face_alignment/train_ibug300w_farl-b-ep16_448_refinebb.yaml \
+  --exp_name farl --blob_root ./blob
 ```
 
 It is also easy to create new config files for training and evaluation on your own.
