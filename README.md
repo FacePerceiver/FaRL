@@ -66,7 +66,24 @@ python -m blueprint.run \
   --exp_name farl --blob_root ./blob
 ```
 
-It is also easy to create new config files for training and evaluation on your own.
+It is also easy to create new config files for training and evaluation on your own. For example, you can customize your own face parsing task on CelebAMask-HQ by editing the values below.
+
+```yaml
+package: farl.experiments.face_parsing
+
+class: blueprint.ml.DistributedGPURun
+local_run:
+  $PARSE('./trainers/celebm_farl.yaml', 
+    cfg_file=FILE,
+    train_data_ratio=None, # The data ratio used for training. None means using 100% training data; 0.1 means using only 10% training data.
+    batch_size=5, # The local batch size on each GPU.
+    model_type='base', # The size of the pre-trained backbone. Supports 'base', 'large' or 'huge'.
+    model_path=BLOB('checkpoint/FaRL-Base-Patch16-LAIONFace20M-ep16.pth'), # The path to the pre-trained backbone.
+    input_resolution=448, # The input image resolution, e.g 224, 448. 
+    head_channel=768, # The channels of the head.
+    optimizer_name='refine_backbone', # The optimization method. Should be 'refine_backbone' or 'freeze_backbone'.
+    enable_amp=False) # Whether to enable float16 in downstream training.
+```
 
 ## Performance
 
