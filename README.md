@@ -18,10 +18,9 @@ This repo hosts official implementation of our paper "[**General Facial Represen
 
 After the pre-training, the image encoder can be utilized for various downstream face tasks. 
 
+## Pre-trained Backbones
 
-## Setup Downstream Training
-
-Different pre-trained transformer backbones can be downloaded as below.
+We offer different pre-trained transformer backbones as below.
 
 | Model Name  |  Pre-training Data | Link |
 | ----------- | -------------- | ----- |
@@ -29,11 +28,11 @@ Different pre-trained transformer backbones can be downloaded as below.
 | FaRL-Base-Patch16-LAIONFace20M-ep64 | LAION Face 20M  | [BLOB](https://facevcstandard.blob.core.windows.net/haya/releases/farl/FaRL-Base-Patch16-LAIONFace20M-ep64.pth?sv=2020-08-04&st=2021-12-27T05%3A22%3A56Z&se=2025-12-21T05%3A22%3A00Z&sr=b&sp=r&sig=til1J9u%2FQqf6qRc6cPx9nPyOGl%2F9ahTyvQ3VBPePs6A%3D) |
 | FaRL-Base-Patch16-LAIONFace50M-ep16 | LAION Face 50M | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyZp2z2DdUNoqTVp?e=T7C1QA), [BLOB](https://facevcstandard.blob.core.windows.net/haya/releases/farl/FaRL-Base-Patch16-LAIONFace50M-ep16.pth?sv=2020-08-04&st=2021-12-17T13%3A01%3A48Z&se=2025-01-17T13%3A01%3A00Z&sr=b&sp=r&sig=6g1B3f4vEmFc1tmz8QWSH6lRoK%2BABA%2FWfmqXLGS61MM%3D) |
 
-Download these models to `./blob/checkpoint/`.
 
-All downstream trainings require 8 NVIDIA V100 GPUs (32G).
+## Setup Downstream Training
+
+We run all downstream trainings on 8 NVIDIA GPUs (32G). Our code supports other GPU configurations, but we do not guarantee the resulting performances on them.
 Before setting up, install these packages:
-
 * [PyTorch](https://pytorch.org/get-started/previous-versions/) 1.7.0
 * [MMCV-Full](https://github.com/open-mmlab/mmcv) 1.3.14
 
@@ -41,13 +40,27 @@ Then, install the rest dependencies with `pip install -r ./requirement.txt`.
 
 Please refer to [./DS_DATA.md](./DS_DATA.md) to prepare the training and testing data for downstream tasks.
 
-Now you can launch the trainings with following command template.
+Download [the pre-trained backbones](https://github.com/microsoft/FaRL#pre-trained-backbones) into `./blob/checkpoint/`.
+Now you can launch the downstream trainings & evaluations with following command template.
 
 ```
 python -m blueprint.run farl/experiments/{task}/{train_config_file}.yaml --exp_name farl --blob_root ./blob
 ```
 
 The repo has included some config files under `./farl/experiments/` that perform finetuning for face parsing and face alignment.
+For example, if you would like to launch a face parsing training on LaPa by finetuning our `FaRL-Base-Patch16-LAIONFace20M-ep16` pre-training, simply run with:
+
+```
+python -m blueprint.run farl/experiments/face_parsing/train_lapa_farl-b-ep16_448_refinebb.yaml --exp_name farl --blob_root ./blob
+```
+
+Or if you would like to launch a face alignment training on 300W by finetuning our `FaRL-Base-Patch16-LAIONFace20M-ep16` pre-training, you can simply run with:
+
+```
+python -m blueprint.run farl/experiments/face_alignment/train_ibug300w_farl-b-ep16_448_refinebb.yaml --exp_name farl --blob_root ./blob
+```
+
+It is also easy to create new config files for training and evaluation on your own.
 
 ## Performance
 
@@ -89,20 +102,6 @@ If you find our work helpful, please consider citing
 For help or issues concerning the code and the released models, please submit a GitHub issue.
 Otherwise, please contact [Hao Yang](https://haya.pro) (`haya@microsoft.com`).
 
-
-## Contributing
-
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
-
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## Trademarks
 
