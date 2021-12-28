@@ -44,14 +44,18 @@ Download [the pre-trained backbones](https://github.com/microsoft/FaRL#pre-train
 Now you can launch the downstream trainings & evaluations with following command template.
 
 ```
-python -m blueprint.run farl/experiments/{task}/{train_config_file}.yaml --exp_name farl --blob_root ./blob
+python -m blueprint.run \
+  farl/experiments/{task}/{train_config_file}.yaml \
+  --exp_name farl --blob_root ./blob
 ```
 
 The repo has included some config files under `./farl/experiments/` that perform finetuning for face parsing and face alignment.
 For example, if you would like to launch a face parsing training on LaPa by finetuning our `FaRL-Base-Patch16-LAIONFace20M-ep16` pre-training, simply run with:
 
 ```
-python -m blueprint.run farl/experiments/face_parsing/train_lapa_farl-b-ep16_448_refinebb.yaml --exp_name farl --blob_root ./blob
+python -m blueprint.run \
+  farl/experiments/face_parsing/train_lapa_farl-b-ep16_448_refinebb.yaml \
+  --exp_name farl --blob_root ./blob
 ```
 
 Or if you would like to launch a face alignment training on 300W by finetuning our `FaRL-Base-Patch16-LAIONFace20M-ep16` pre-training, you can simply run with:
