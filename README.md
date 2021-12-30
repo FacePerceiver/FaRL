@@ -1,5 +1,4 @@
 # *FaRL* for *Fa*cial *R*epresentation *L*earning
-
 	
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/general-facial-representation-learning-in-a/face-alignment-on-300w)](https://paperswithcode.com/sota/face-alignment-on-300w?p=general-facial-representation-learning-in-a)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/general-facial-representation-learning-in-a/face-alignment-on-aflw-19)](https://paperswithcode.com/sota/face-alignment-on-aflw-19?p=general-facial-representation-learning-in-a)
@@ -22,11 +21,11 @@ After the pre-training, the image encoder can be utilized for various downstream
 
 We offer different pre-trained transformer backbones as below.
 
-| Model Name  |  Pre-training Data | Link |
-| ----------- | -------------- | ----- |
-| FaRL-Base-Patch16-LAIONFace20M-ep16 (used in paper) | LAION Face 20M  | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyPsG2M4uPXay7Au?e=Ocvk1T), [BLOB](https://facevcstandard.blob.core.windows.net/haya/releases/farl/FaRL-Base-Patch16-LAIONFace20M-ep16.pth?sv=2020-08-04&st=2021-12-17T13%3A00%3A07Z&se=2025-01-18T13%3A00%3A00Z&sr=b&sp=r&sig=D0ZPJgp8BrAgHIdACfZzqPnyOcX1ivGdHnF8qgtWdoI%3D) |
-| FaRL-Base-Patch16-LAIONFace20M-ep64 | LAION Face 20M  | [BLOB](https://facevcstandard.blob.core.windows.net/haya/releases/farl/FaRL-Base-Patch16-LAIONFace20M-ep64.pth?sv=2020-08-04&st=2021-12-27T05%3A22%3A56Z&se=2025-12-21T05%3A22%3A00Z&sr=b&sp=r&sig=til1J9u%2FQqf6qRc6cPx9nPyOGl%2F9ahTyvQ3VBPePs6A%3D) |
-| FaRL-Base-Patch16-LAIONFace50M-ep16 | LAION Face 50M | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyZp2z2DdUNoqTVp?e=T7C1QA), [BLOB](https://facevcstandard.blob.core.windows.net/haya/releases/farl/FaRL-Base-Patch16-LAIONFace50M-ep16.pth?sv=2020-08-04&st=2021-12-17T13%3A01%3A48Z&se=2025-01-17T13%3A01%3A00Z&sr=b&sp=r&sig=6g1B3f4vEmFc1tmz8QWSH6lRoK%2BABA%2FWfmqXLGS61MM%3D) |
+| Model Name  |  Data | Epoch | Link |
+| ----------- | -------------- | ----- | ---- |
+| FaRL-Base-Patch16-LAIONFace20M-ep16 (used in paper) | LAION Face 20M  | 16 | [BLOB](https://facevcstandard.blob.core.windows.net/haya/releases/farl/FaRL-Base-Patch16-LAIONFace20M-ep16.pth?sv=2020-08-04&st=2021-12-17T13%3A00%3A07Z&se=2025-01-18T13%3A00%3A00Z&sr=b&sp=r&sig=D0ZPJgp8BrAgHIdACfZzqPnyOcX1ivGdHnF8qgtWdoI%3D) |
+| FaRL-Base-Patch16-LAIONFace20M-ep64 | LAION Face 20M | 64 | [BLOB](https://facevcstandard.blob.core.windows.net/haya/releases/farl/FaRL-Base-Patch16-LAIONFace20M-ep64.pth?sv=2020-08-04&st=2021-12-27T05%3A22%3A56Z&se=2025-12-21T05%3A22%3A00Z&sr=b&sp=r&sig=til1J9u%2FQqf6qRc6cPx9nPyOGl%2F9ahTyvQ3VBPePs6A%3D) |
+<!-- | FaRL-Base-Patch16-LAIONFace50M-ep16 | LAION Face 50M | [BLOB](https://facevcstandard.blob.core.windows.net/haya/releases/farl/FaRL-Base-Patch16-LAIONFace50M-ep16.pth?sv=2020-08-04&st=2021-12-17T13%3A01%3A48Z&se=2025-01-17T13%3A01%3A00Z&sr=b&sp=r&sig=6g1B3f4vEmFc1tmz8QWSH6lRoK%2BABA%2FWfmqXLGS61MM%3D) | -->
 
 
 ## Setup Downstream Training
@@ -66,7 +65,7 @@ python -m blueprint.run \
   --exp_name farl --blob_root ./blob
 ```
 
-It is also easy to create new config files for training and evaluation on your own. For example, you can customize your own face parsing task on CelebAMask-HQ by editing the values below.
+It is also easy to create new config files for training and evaluation on your own. For example, you can customize your own face parsing task on CelebAMask-HQ by editing the values below (remember to remove the comments before running).
 
 ```yaml
 package: farl.experiments.face_parsing
@@ -87,9 +86,9 @@ local_run:
 
 ## Performance
 
-The following table illustrates their performances reported in the paper (Paper) or reproduced using this repo (Rep). There are small differences between their performances due to code refactorization.
+The following table illustrates the performances of our `FaRL-Base-Patch16-LAIONFace20M-ep16` pre-training, which is pre-trained with 16 epoches, both reported in the paper (Paper) and reproduced using this repo (Rep). There are small differences between their performances due to code refactorization.
 
-| File Name | Task | Benchmark | Metric | Score (Paper/Rep) | Logs (Paper/Rep) |
+| Name | Task | Benchmark | Metric | Score (Paper/Rep) | Logs (Paper/Rep) |
 | ---- | ---- | ---- | --- | --- | --- |
 | [face_parsing/<br/>train_celebm_farl-b-ep16-448_refinebb.yaml](./farl/experiments/face_parsing/train_celebm_farl-b-ep16_448_refinebb.yaml) | Face Parsing  | CelebAMask-HQ | F1-mean ⇑ | 89.56/89.65 | [Paper](./logs/paper/face_parsing.train_celebm_farl-b-ep16-448_refinebb), [Rep](./logs/reproduce/face_parsing.train_celebm_farl-b-ep16_448_refinebb) |
 | [face_parsing/<br/>train_lapa_farl-b-ep16_448_refinebb.yaml](./farl/experiments/face_parsing/train_lapa_farl-b-ep16_448_refinebb.yaml) | Face Parsing | LaPa | F1-mean ⇑ | 93.88/93.86 | [Paper](./logs/paper/face_parsing.train_lapa_farl-b-ep16_448_refinebb), [Rep](./logs/reproduce/face_parsing.train_lapa_farl-b-ep16_448_refinebb) |
@@ -97,15 +96,32 @@ The following table illustrates their performances reported in the paper (Paper)
 | [face_alignment/<br/>train_ibug300w_farl-b-ep16_448_refinebb.yaml](./farl/experiments/face_alignment/train_ibug300w_farl-b-ep16_448_refinebb.yaml) | Face Alignment | 300W (Full) | NME_inter-ocular ⇓ | 2.93/2.92 | [Paper](./logs/paper/face_alignment.train_ibug300w_farl-b-ep16_448_refinebb), [Rep](./logs/reproduce/face_alignment.train_ibug300w_farl-b-ep16_448_refinebb) |
 | [face_alignment/<br/>train_wflw_farl-b-ep16_448_refinebb.yaml](./farl/experiments/face_alignment/train_wflw_farl-b-ep16_448_refinebb.yaml) | Face Alignment | WFLW (Full) | NME_inter-ocular ⇓ | 3.96/3.98 | [Paper](./logs/paper/face_alignment.train_wflw_farl-b-ep16_448_refinebb), [Rep](./logs/reproduce/face_alignment.train_wflw_farl-b-ep16_448_refinebb) |
 
-We also report results using the 50M pre-trained backbone, showing further enhancement on LaPa and AFLW-19.
 
-| File Name | Task | Benchmark | Metric | Score | Logs |
+Below we also report results of our new `FaRL-Base-Patch16-LAIONFace20M-ep64`, which is pre-trained with 64 epoches instead of 16 epoches as above, showing further improvements on most tasks.
+
+| Name | Task | Benchmark | Metric | Score | Logs |
+| ---- | ---- | ---- | --- | --- | --- |
+| [face_parsing/<br/>train_celebm_farl-b-ep64-448_refinebb.yaml](./farl/experiments/face_parsing/train_celebm_farl-b-ep64_448_refinebb.yaml) | Face Parsing  | CelebAMask-HQ | F1-mean ⇑ | 89.57 | [Rep](./logs/reproduce/face_parsing.train_celebm_farl-b-ep64_448_refinebb) |
+| [face_parsing/<br/>train_lapa_farl-b-ep64_448_refinebb.yaml](./farl/experiments/face_parsing/train_lapa_farl-b-ep64_448_refinebb.yaml) | Face Parsing | LaPa | F1-mean ⇑ | 94.04 | [Rep](./logs/reproduce/face_parsing.train_lapa_farl-b-ep64_448_refinebb) |
+| [face_alignment/<br/>train_aflw19_farl-b-ep64_448_refinebb.yaml](./farl/experiments/face_alignment/train_aflw19_farl-b-ep64_448_refinebb.yaml) | Face Alignment | AFLW-19 (Full) | NME_diag ⇓ | 0.938 | [Rep](./logs/reproduce/face_alignment.train_aflw19_farl-b-ep64_448_refinebb) |
+| [face_alignment/<br/>train_ibug300w_farl-b-ep64_448_refinebb.yaml](./farl/experiments/face_alignment/train_ibug300w_farl-b-ep64_448_refinebb.yaml) | Face Alignment | 300W (Full) | NME_inter-ocular ⇓ | 2.88 | [Rep](./logs/reproduce/face_alignment.train_ibug300w_farl-b-ep64_448_refinebb) |
+| [face_alignment/<br/>train_wflw_farl-b-ep64_448_refinebb.yaml](./farl/experiments/face_alignment/train_wflw_farl-b-ep64_448_refinebb.yaml) | Face Alignment | WFLW (Full) | NME_inter-ocular ⇓ | 3.88 | [Rep](./logs/reproduce/face_alignment.train_wflw_farl-b-ep64_448_refinebb) |
+
+
+<!-- We also report results using the 50M pre-trained backbone, showing further enhancement on LaPa and AFLW-19.
+
+| Config | Task | Benchmark | Metric | Score | Logs |
 | ---- | ---- | ---- | --- | --- | --- |
 | [face_parsing/<br/>train_celebm_farl-b-50m-ep16-448_refinebb.yaml](./farl/experiments/face_parsing/train_celebm_farl-b-50m-ep16_448_refinebb.yaml) | Face Parsing  | CelebAMask-HQ | F1-mean ⇑ | 89.68 | [Rep](./logs/reproduce/face_parsing.train_celebm_farl-b-50m-ep16_448_refinebb) |
 | [face_parsing/<br/>train_lapa_farl-b-50m-ep16_448_refinebb.yaml](./farl/experiments/face_parsing/train_lapa_farl-b-50m-ep16_448_refinebb.yaml) | Face Parsing | LaPa | F1-mean ⇑ | 94.01 | [Rep](./logs/reproduce/face_parsing.train_lapa_farl-b-50m-ep16_448_refinebb) |
 | [face_alignment/<br/>train_aflw19_farl-b-50m-ep16_448_refinebb.yaml](./farl/experiments/face_alignment/train_aflw19_farl-b-50m-ep16_448_refinebb.yaml) | Face Alignment | AFLW-19 (Full) | NME_diag ⇓ | 0.937 | [Rep](./logs/reproduce/face_alignment.train_aflw19_farl-b-50m-ep16_448_refinebb) |
 | [face_alignment/<br/>train_ibug300w_farl-b-50m-ep16_448_refinebb.yaml](./farl/experiments/face_alignment/train_ibug300w_farl-b-50m-ep16_448_refinebb.yaml) | Face Alignment | 300W (Full) | NME_inter-ocular ⇓ | 2.92 | [Rep](./logs/reproduce/face_alignment.train_ibug300w_farl-b-50m-ep16_448_refinebb) |
-| [face_alignment/<br/>train_wflw_farl-b-50m-ep16_448_refinebb.yaml](./farl/experiments/face_alignment/train_wflw_farl-b-50m-ep16_448_refinebb.yaml) | Face Alignment | WFLW (Full) | NME_inter-ocular ⇓ | 3.99 | [Rep](./logs/reproduce/face_alignment.train_wflw_farl-b-50m-ep16_448_refinebb) |
+| [face_alignment/<br/>train_wflw_farl-b-50m-ep16_448_refinebb.yaml](./farl/experiments/face_alignment/train_wflw_farl-b-50m-ep16_448_refinebb.yaml) | Face Alignment | WFLW (Full) | NME_inter-ocular ⇓ | 3.99 | [Rep](./logs/reproduce/face_alignment.train_wflw_farl-b-50m-ep16_448_refinebb) | -->
+
+
+## Contact
+
+For help or issues concerning the code and the released models, feel free to submit a GitHub issue, or contact [Hao Yang](https://haya.pro) ([haya@microsoft.com](mailto:haya@microsoft.com)).
 
 
 ## Citation
@@ -119,11 +135,6 @@ If you find our work helpful, please consider citing
   year={2021}
 }
 ```
-
-## Contact
-
-For help or issues concerning the code and the released models, please submit a GitHub issue.
-Otherwise, please contact [Hao Yang](https://haya.pro) (`haya@microsoft.com`).
 
 
 ## Trademarks
