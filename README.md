@@ -13,7 +13,7 @@ This repo hosts official implementation of our paper "[**General Facial Represen
 
 **FaRL** offers powerful pre-training transformer backbones for face analysis tasks. Its pre-training combines both the image-text contrastive learning and the masked image modeling.
 
-<img src="./figures/framework2.jpg" alt="framework" width="400"/>
+<img src="./figures/framework2.jpg" alt="framework" width="800"/>
 
 After the pre-training, the image encoder can be utilized for various downstream face tasks. 
 
