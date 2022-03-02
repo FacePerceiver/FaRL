@@ -118,6 +118,10 @@ Below we also report results of our new `FaRL-Base-Patch16-LAIONFace20M-ep64`, w
 | [face_alignment/<br/>train_ibug300w_farl-b-50m-ep16_448_refinebb.yaml](./farl/experiments/face_alignment/train_ibug300w_farl-b-50m-ep16_448_refinebb.yaml) | Face Alignment | 300W (Full) | NME_inter-ocular ⇓ | 2.92 | [Rep](./logs/reproduce/face_alignment.train_ibug300w_farl-b-50m-ep16_448_refinebb) |
 | [face_alignment/<br/>train_wflw_farl-b-50m-ep16_448_refinebb.yaml](./farl/experiments/face_alignment/train_wflw_farl-b-50m-ep16_448_refinebb.yaml) | Face Alignment | WFLW (Full) | NME_inter-ocular ⇓ | 3.99 | [Rep](./logs/reproduce/face_alignment.train_wflw_farl-b-50m-ep16_448_refinebb) | -->
 
+## Pre-trained Downstream Models
+
+We will continuously update the pre-trained downstream face models in our [facer](https://github.com/FacePerceiver/facer) package.
+
 
 ## Contact
 
