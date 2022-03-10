@@ -6,7 +6,7 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/general-facial-representation-learning-in-a/face-parsing-on-celebamask-hq)](https://paperswithcode.com/sota/face-parsing-on-celebamask-hq?p=general-facial-representation-learning-in-a)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/general-facial-representation-learning-in-a/face-parsing-on-lapa)](https://paperswithcode.com/sota/face-parsing-on-lapa?p=general-facial-representation-learning-in-a)
 
-This repo hosts official implementation of our paper "[**General Facial Representation Learning in a Visual-Linguistic Manner**](https://arxiv.org/abs/2112.03109)".
+This repo hosts official implementation of our CVPR2022 paper "[**General Facial Representation Learning in a Visual-Linguistic Manner**](https://arxiv.org/abs/2112.03109)".
 
 
 ## Introduction
