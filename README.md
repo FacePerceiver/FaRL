@@ -7,7 +7,10 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/general-facial-representation-learning-in-a/face-parsing-on-lapa)](https://paperswithcode.com/sota/face-parsing-on-lapa?p=general-facial-representation-learning-in-a)
 
 This repo hosts official implementation of our CVPR2022 paper "[**General Facial Representation Learning in a Visual-Linguistic Manner**](https://arxiv.org/abs/2112.03109)".
+## Updates
 
+- [21/06/2022] [LAION-Face](https://github.com/FacePerceiver/LAION-Face) dataset was released.
+- [10/03/2022] FaRL was accepted by CVPR 2022 as Oral presentation.
 
 ## Introduction
 
