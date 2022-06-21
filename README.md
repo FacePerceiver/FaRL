@@ -26,6 +26,32 @@ We offer different pre-trained transformer backbones as below.
 | FaRL-Base-Patch16-LAIONFace20M-ep16 (used in paper) | LAION Face 20M  | 16 | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyPsG2M4uPXay7Au); [Baidu](https://pan.baidu.com/s/162I6cfIYvyz7tUz4zSSuFA) Key: wu7p |
 | FaRL-Base-Patch16-LAIONFace20M-ep64 | LAION Face 20M | 64 | [OneDrive](https://1drv.ms/u/s!AperexS2nqQom0Zu3lsuM28UbEgP); [Baidu](https://pan.baidu.com/s/1fCjKPpwhqz7gF-GjA3O0vA) Key: mgau |
 
+## Use FaRL as FaceCLIP
+
+We provied both the pretrained text encoder and the image encoder. As FaRL shares the same network structure as CLIP, you can load the weights of FaRL using exactly the same network structure as CLIP VIT-B16, and use it exactly like CLIP. Here are the code sample modified from CLIP.
+```
+import torch
+import clip
+from PIL import Image
+
+device ="cuda" if torch.cuda.is_available() else "cpu"
+model, preprocess = clip.load("ViT-B/16", device="cpu")
+model = model.to(device)
+farl_state=torch.load("FaRL-Base-Patch16-LAIONFace20M-ep16.pth") # you can download from https://github.com/FacePerceiver/FaRL#pre-trained-backbones
+model.load_state_dict(farl_state["state_dict"],strict=False)
+
+image = preprocess(Image.open("CLIP.png")).unsqueeze(0).to(device)
+text = clip.tokenize(["a diagram", "a dog", "a cat"]).to(device)
+
+with torch.no_grad():
+    image_features = model.encode_image(image)
+    text_features = model.encode_text(text)
+    
+    logits_per_image, logits_per_text = model(image, text)
+    probs = logits_per_image.softmax(dim=-1).cpu().numpy()
+
+print("Label probs:", probs)  
+```
 
 ## Setup Downstream Training
 
