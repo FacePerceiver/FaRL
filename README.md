@@ -11,7 +11,7 @@ This repo hosts official implementation of our CVPR2022 paper "[**General Facial
 
 - [21/06/2022] [LAION-Face](https://github.com/FacePerceiver/LAION-Face) dataset was released.
 - [10/03/2022] FaRL was accepted by CVPR 2022 as Oral presentation.
-- [02/03/2022] [facer](https://github.com/FacePerceiver/facer) is released. It is a face related toolkit build upon FaRL.
+- [02/03/2022] [facer](https://github.com/FacePerceiver/facer) was released. It is a face related toolkit build upon FaRL.
 
 ## Introduction
 
