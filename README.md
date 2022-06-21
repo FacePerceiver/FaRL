@@ -147,6 +147,9 @@ Below we also report results of our new `FaRL-Base-Patch16-LAIONFace20M-ep64`, w
 
 We will continuously update the pre-trained downstream face models in our [facer](https://github.com/FacePerceiver/facer) package.
 
+## LAION-Face Dataset
+
+We use the [LAION-Face](https://github.com/FacePerceiver/LAION-Face) dataset for training the FaRL model, [LAION-Face](https://github.com/FacePerceiver/LAION-Face) is the human face subset of LAION-400M, it consists of 50 million image-text pairs, we use the 20M subset for fast verification. 
 
 ## Contact
 
