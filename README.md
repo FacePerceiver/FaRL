@@ -68,7 +68,7 @@ Then, install the rest dependencies with `pip install -r ./requirement.txt`.
 
 Please refer to [./DS_DATA.md](./DS_DATA.md) to prepare the training and testing data for downstream tasks.
 
-Download [the pre-trained backbones](https://github.com/microsoft/FaRL#pre-trained-backbones) into `./blob/checkpoint/`.
+Download [the pre-trained backbones](#pre-trained-backbones) into `./blob/checkpoint/`.
 Now you can launch the downstream trainings & evaluations with following command template.
 
 ```
