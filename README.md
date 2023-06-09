@@ -27,8 +27,8 @@ We offer different pre-trained transformer backbones as below.
 
 | Model Name  |  Data | Epoch | Link |
 | ----------- | -------------- | ----- | ---- |
-| FaRL-Base-Patch16-LAIONFace20M-ep16 (used in paper) | [LAION Face 20M](https://github.com/FacePerceiver/LAION-Face)  | 16 | [OneDrive](https://1drv.ms/u/s!AperexS2nqQomyPsG2M4uPXay7Au); [Baidu](https://pan.baidu.com/s/162I6cfIYvyz7tUz4zSSuFA) Key: wu7p |
-| FaRL-Base-Patch16-LAIONFace20M-ep64 | [LAION Face 20M](https://github.com/FacePerceiver/LAION-Face) | 64 | [OneDrive](https://1drv.ms/u/s!AperexS2nqQom0Zu3lsuM28UbEgP); [Baidu](https://pan.baidu.com/s/1fCjKPpwhqz7gF-GjA3O0vA) Key: mgau |
+| FaRL-Base-Patch16-LAIONFace20M-ep16 (used in paper) | [LAION Face 20M](https://github.com/FacePerceiver/LAION-Face)  | 16 | [Github](https://github.com/FacePerceiver/FaRL/releases/download/pretrained_weights/FaRL-Base-Patch16-LAIONFace20M-ep16.pth); [Baidu](https://pan.baidu.com/s/162I6cfIYvyz7tUz4zSSuFA) Key: wu7p |
+| FaRL-Base-Patch16-LAIONFace20M-ep64 | [LAION Face 20M](https://github.com/FacePerceiver/LAION-Face) | 64 | [Github](https://github.com/FacePerceiver/FaRL/releases/download/pretrained_weights/FaRL-Base-Patch16-LAIONFace20M-ep64.pth); [Baidu](https://pan.baidu.com/s/1fCjKPpwhqz7gF-GjA3O0vA) Key: mgau |
 
 ## Use FaRL as FaceCLIP
 
